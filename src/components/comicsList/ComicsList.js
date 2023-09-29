@@ -13,7 +13,8 @@ const ComicsList = () => {
     const { loading, error, getAllComics } = useComicsMarvelService();
 
     useEffect(() => {
-        onRequest(offset, true);
+        return () => onRequest(offset, true);
+        // eslint-disable-next-line
     }, []);
 
     const onRequest = (offset, initial) => {
@@ -41,6 +42,7 @@ const ComicsList = () => {
             return (
                 <li className="comics__item" key={i}>
                     {/* переход на страницу комикса */}
+                    {/* eslint-disable-next-line */}
                     <a href="#">
                         <img
                             src={comics.thumbnail}

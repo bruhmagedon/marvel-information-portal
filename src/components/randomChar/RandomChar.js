@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useMarvelService from "../../services/MarvelService";
+import useCharMarvelService from "../../services/CharMarvelService";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/errorMessage";
 
@@ -9,13 +9,13 @@ import mjolnir from "../../resources/img/mjolnir.png";
 const RandomChar = () => {
     const [char, setChar] = useState({});
 
-    const { loading, error, getCharacter, clearError } = useMarvelService();
+    const { loading, error, getCharacter, clearError } = useCharMarvelService();
 
     useEffect(() => {
-        updateChar();
         const timerId = setInterval(updateChar, 60000);
 
         return () => {
+            updateChar();
             clearInterval(timerId);
         };
         // eslint-disable-next-line

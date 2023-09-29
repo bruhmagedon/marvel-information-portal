@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import useMarvelService from "../../services/MarvelService";
+import useCharMarvelService from "../../services/CharMarvelService";
 import Skeleton from "../skeleton/Skeleton";
 import ErrorMessage from "../errorMessage/errorMessage";
 import Spinner from "../spinner/Spinner";
@@ -11,7 +11,7 @@ import "./charInfo.scss";
 const CharInfo = (props) => {
     const [char, setChar] = useState(null);
 
-    const { loading, error, getCharacter, clearError } = useMarvelService();
+    const { loading, error, getCharacter, clearError } = useCharMarvelService();
 
     useEffect(() => {
         updateChar();

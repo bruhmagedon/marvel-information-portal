@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/errorMessage";
-import useMarvelService from "../../services/MarvelService";
+import useCharMarvelService from "../../services/CharMarvelService";
 import "./charList.scss";
 
 const CharList = (props) => {
@@ -12,10 +12,11 @@ const CharList = (props) => {
     const [offset, setOffset] = useState(210);
     const [charEnded, setCharEnded] = useState(false);
 
-    const { loading, error, getAllCharacters } = useMarvelService();
+    const { loading, error, getAllCharacters } = useCharMarvelService();
 
     useEffect(() => {
-        onRequest(offset, true);
+        console.log("da");
+        return () => onRequest(offset, true);
         // eslint-disable-next-line
     }, []);
 
@@ -30,9 +31,9 @@ const CharList = (props) => {
             ended = true;
         }
         setCharList((charList) => [...charList, ...newCharList]);
-        setNewItemLoading(false);
+        setNewItemLoading((newItemLoading) => false);
         setOffset((offset) => offset + 9);
-        setCharEnded(ended);
+        setCharEnded((charEnded) => ended);
     };
 
     const itemRefs = useRef([]);
@@ -58,11 +59,18 @@ const CharList = (props) => {
                 <li
                     ref={(el) => (itemRefs.current[i] = el)}
                     className="char__item"
-                    key={item.id}
+                    // key={item.id}
+                    key={i}
                     onClick={() => {
                         props.onCharSelected(item.id);
                         focusOnItem(i);
                     }}
+                    // onKeyPress={(e) => {
+                    //     if (e.key === " " || e.key === "Enter") {
+                    //         props.onCharSelected(item.id);
+                    //         focusOnItem(i);
+                    //     }
+                    // }}
                 >
                     <img
                         src={item.thumbnail}
