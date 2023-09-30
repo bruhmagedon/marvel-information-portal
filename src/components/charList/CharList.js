@@ -15,7 +15,6 @@ const CharList = (props) => {
     const { loading, error, getAllCharacters } = useCharMarvelService();
 
     useEffect(() => {
-        console.log("da");
         return () => onRequest(offset, true);
         // eslint-disable-next-line
     }, []);

@@ -1,23 +1,32 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import AppHeader from "../appHeader/AppHeader";
-import { MainPage, ComicsPage } from "../pages/index";
+import { MainPage, ComicsPage, Page404, SingleComicPage } from "../pages/index";
 const App = () => {
     return (
         <Router>
             <div className="app">
                 <AppHeader />
-                <Switch>
-                    <Route exact path="/">
-                        <MainPage />
-                    </Route>
-                    <Route exact path="/comics">
-                        <ComicsPage />
-                    </Route>
-                </Switch>
+                <Routes>
+                    <Route exact path="/" element={<MainPage />} />
+                    <Route exact path="/comics" element={<ComicsPage />} />
+                    <Route
+                        exact
+                        //отдельный комикс по определенному айди
+                        path="/comics/:comicId"
+                        element={<SingleComicPage />}
+                    />
+                    <Route exact path="*" element={<Page404 />} />
+                </Routes>
             </div>
         </Router>
     );
 };
+
+// че можно сделать по проекту
+//      описание текст в комиксах, там есть br, их нужно адаптировать
+//      кликабельные ссылки комиксов в чарлисте
+//      ts
+//      настроить рутинг
 
 export default App;

@@ -1,5 +1,6 @@
 import "./comicsList.scss";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import useComicsMarvelService from "../../services/ComicsMarvelService";
 import ErrorMessage from "../errorMessage/errorMessage";
 import Spinner from "../spinner/Spinner";
@@ -43,7 +44,7 @@ const ComicsList = () => {
                 <li className="comics__item" key={i}>
                     {/* переход на страницу комикса */}
                     {/* eslint-disable-next-line */}
-                    <a href="#">
+                    <Link to={`/comics/${comics.id}`}>
                         <img
                             src={comics.thumbnail}
                             alt={comics.title}
@@ -51,7 +52,7 @@ const ComicsList = () => {
                         />
                         <div className="comics__item-name">{comics.title}</div>
                         <div className="comics__item-price">{comicsPrice}</div>
-                    </a>
+                    </Link>
                 </li>
             );
         });
