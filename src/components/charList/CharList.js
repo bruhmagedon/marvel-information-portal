@@ -29,8 +29,7 @@ const CharList = (props) => {
   const [offset, setOffset] = useState(210);
   const [charEnded, setCharEnded] = useState(false);
 
-  const { loading, error, getAllCharacters, process, setProcess } =
-    useCharMarvelService();
+  const { getAllCharacters, process, setProcess } = useCharMarvelService();
 
   useEffect(() => {
     return () => onRequest(offset, true);
@@ -99,8 +98,8 @@ const CharList = (props) => {
     return <ul className="char__grid">{items}</ul>;
   }
 
-  const errorMessage = error ? <ErrorMessage /> : null;
-  const spinner = loading && !newItemLoading ? <Spinner /> : null;
+  // const errorMessage = error ? <ErrorMessage /> : null;
+  // const spinner = loading && !newItemLoading ? <Spinner /> : null;
 
   return (
     <div className="char__list">
